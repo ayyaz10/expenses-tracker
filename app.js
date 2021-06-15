@@ -138,7 +138,12 @@ const ItemCtrl = (function() {
             data.items.splice(index, 1);
         },
         clearAllItems:function(){
-            data.items = [];
+            const isTrue = confirm('Are you sure to clear all?');
+            if(isTrue) {
+                data.items = [];
+            } else {
+                window.location.reload();
+            }
         },
         setCurrentItem: function(item) {
             data.currentItem = item;
@@ -428,6 +433,7 @@ const App = (function(ItemCtrl,StorageCtrl, UICtrl) {
     const clearAllItemsClick = function(e) {
         e.preventDefault();
         // Delete all items from data structure
+
         ItemCtrl.clearAllItems();
 
         // Remove from UI
