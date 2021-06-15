@@ -4,6 +4,7 @@ const StorageCtrl = (function(){
     // Public methods
     return {
         storeItem: function(item) {
+            console.log(item)
             let items;
             // Check if any items in local storage
             if(localStorage.getItem('items') === null) {
@@ -61,6 +62,7 @@ const ItemCtrl = (function() {
     // Item Constructor
     const Item = function(id, name, amount){
         this.id = id;
+        this.time = new Date().toLocaleString();
         this.name = name;
         this.amount = amount;
     }
@@ -94,7 +96,7 @@ const ItemCtrl = (function() {
             amount = parseInt(amount);
 
             // Create new Item
-            newItem = new Item(ID, name, amount)
+            newItem = new Item(ID, name, amount);
 
             // Add to items array
             data.items.push(newItem);
@@ -186,7 +188,8 @@ const UICtrl = (function() {
         clearBtn: '.clear-btn',
         itemNameInput: '#item-name',
         itemAmountInput: '#item-amount',
-        totalAmount: '.total-amount'
+        totalAmount: '.total-amount',
+        time: '.time'
     }
     // Public methods
     return {
@@ -199,6 +202,8 @@ const UICtrl = (function() {
                 <a href="#" class="secondary-content">
                     <i class="edit-item far fa-edit"></i>
                 </a>
+                <br>
+                <small class="time"><em>${item.time}</em></small>
             </li>`;
             });
             // Insert list items
@@ -221,10 +226,14 @@ const UICtrl = (function() {
             // Add ID
             li.id = `item-${item.id}`;
             // Add HTML
-            li.innerHTML = `<strong>${item.name}: </strong> <em>${item.amount} amount</em>
+            li.innerHTML = `
+                <strong>${item.name}: </strong> <em>${item.amount} amount</em>
                 <a href="#" class="secondary-content">
                     <i class="edit-item far fa-edit"></i>
-                </a>`;
+                </a>
+                <br>
+                <small class="time"><em>${item.time}</em></small>
+                `;
                 // Insert item
                 document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
         },
