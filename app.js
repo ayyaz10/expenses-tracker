@@ -130,12 +130,14 @@ const ItemCtrl = (function() {
             const ids = data.items.map(item => {
                 return item.id
             });
-            console.log(ids)
             // Get index
             const index = ids.indexOf(id);
 
             // Remove item
-            data.items.splice(index, 1);
+            const isTrue = confirm('Are you sure to clear all?');
+            if(isTrue) {
+                data.items.splice(index, 1);
+            }
         },
         clearAllItems:function(){
             const isTrue = confirm('Are you sure to clear all?');
