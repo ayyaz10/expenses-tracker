@@ -232,8 +232,7 @@ const UICtrl = (function() {
                     <i class="edit-item far fa-edit"></i>
                 </a>
                 <br>
-                <small class="time"><em>${item.time}</em></small>
-                `;
+                <small class="time"><em>${item.time}</em></small>`;
                 // Insert item
                 document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
         },
@@ -249,7 +248,9 @@ const UICtrl = (function() {
                     document.querySelector(`#${itemId}`).innerHTML = `<strong>${item.name}: </strong> <em>${item.amount} amount</em>
                     <a href="#" class="secondary-content">
                         <i class="edit-item far fa-edit"></i>
-                    </a>`;
+                    </a>
+                    <br>
+                    <small class="time"><em>${item.time}</em></small>`;
                 }
             })
         },
